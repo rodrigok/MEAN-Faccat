@@ -29,8 +29,11 @@
 				</td>
 			</tr>
 		</table>
+
+		<a href="" ng-click="addItem()">New</a>
+
 		<h3>
-		{{list}}
+		{{list | json}}
 		</h3>
 	</script>
 
@@ -59,7 +62,13 @@
 					{name: 'item1'},
 					{name: 'item2'},
 					{name: 'item3'}
-				]
+				];
+
+				$scope.addItem = function() {
+					$scope.list.push({
+						name: 'item' + ($scope.list.length + 1)
+					});
+				}
 			}
 		])
 	</script>
