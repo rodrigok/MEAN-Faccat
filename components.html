@@ -1,0 +1,43 @@
+<html ng-app="MEAN">
+<head>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+</head>
+
+<body>
+	<script type="text/ng-template" id="phone.html">
+		<div class="row form-group">
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="+55">
+			</div>
+			<div class="col-md-3">
+				<input type="text" class="form-control" placeholder="51">
+			</div>
+			<div class="col-md-6">
+				<input type="text" class="form-control" placeholder="9999-9999">
+			</div>
+		</div>
+	</script>
+
+
+
+	<script type="text/javascript">
+		angular.module('MEAN', []);
+
+		angular.module('MEAN').directive('phone', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'phone.html'
+			}
+		});
+	</script>
+
+
+
+	<phone></phone>
+	<phone></phone>
+	<phone></phone>
+	<phone></phone>
+	<phone></phone>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html ng-app="MEAN">
+<head>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.js"></script>
+</head>
+
+<body>
+
+	<div class="container text-center" ng-view></div>
+
+
+
+	<script type="text/ng-template" id="main.html">
+		<h4>Main Template</h4>
+		<a href="#/list">go to list</a>
+	</script>
+
+
+
+	<script type="text/ng-template" id="list.html">
+		<table class="table">
+			<tr ng-repeat="item in list">
+				<td>
+					{{item.name}}
+				</td>
+				<td>
+					<input class="form-control" type="text" ng-model="item.name">
+				</td>
+			</tr>
+		</table>
+	</script>
+
+
+
+	<script type="text/javascript">
+		angular.module('MEAN', ['ngRoute']);
+
+		angular.module('MEAN').config(['$routeProvider', function($routeProvider) {
+			$routeProvider.
+				when('/', {
+					templateUrl: 'main.html'
+				}).
+				when('/list', {
+					templateUrl: 'list.html',
+					controller: 'ListCtrl',
+				}).
+				otherwise({
+					redirectTo: '/'
+				});
+		}]);
+
+		angular.module('MEAN').controller('ListCtrl', ['$scope',
+			function ($scope) {
+				$scope.list = [
+					{name: 'item1'},
+					{name: 'item2'},
+					{name: 'item3'}
+				]
+			}
+		])
+	</script>
+</body>
+</html>
