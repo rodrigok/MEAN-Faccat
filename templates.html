@@ -53,40 +53,42 @@
 
 
 		angular.module('MEAN').config(['$routeProvider', function($routeProvider) {
+
 			$routeProvider.
 				when('/', {
 					templateUrl: 'main.html'
 				}).
 				when('/posts', {
 					templateUrl: 'posts.html',
-					controller: 'PostsCtrl',
+					controller: 'PostsCtrl'
 				}).
 				otherwise({
 					redirectTo: '/'
 				});
+
 		}]);
 
 
 
-		angular.module('MEAN').controller('PostsCtrl', ['$scope',
-			function ($scope) {
-				$scope.posts = [
-					{title: 'Primeiro Post', content: 'Primeiro conteúdo'},
-					{title: 'Segundo Post', content: 'Segundo conteúdo'}
-				];
+		angular.module('MEAN').controller('PostsCtrl', ['$scope', function ($scope) {
 
-				$scope.addItem = function() {
-					$scope.posts.push({
-						title: 'Novo Post',
-						editing: true
-					});
-				}
+			$scope.posts = [
+				{title: 'Primeiro Post', content: 'Primeiro conteúdo'},
+				{title: 'Segundo Post', content: 'Segundo conteúdo'}
+			];
 
-				$scope.removeItem = function(index) {
-					$scope.posts.splice(index, 1);
-				}
+			$scope.addItem = function() {
+				$scope.posts.push({
+					title: 'Novo Post',
+					editing: true
+				});
 			}
-		])
+
+			$scope.removeItem = function(index) {
+				$scope.posts.splice(index, 1);
+			}
+
+		}]);
 	</script>
 </body>
 </html>
