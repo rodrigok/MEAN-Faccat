@@ -1,0 +1,98 @@
+<html ng-app="MEAN">
+<head>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular-route.js"></script>
+</head>
+
+<body>
+
+	<div class="container" ng-view></div>
+
+
+
+	<script type="text/ng-template" id="main.html">
+		<div class="text-center">
+			<h4>Main Template</h4>
+			<a href="#/posts">go to posts</a>
+		</div>
+	</script>
+
+
+
+	<script type="text/ng-template" id="posts.html">
+		<div ng-repeat="item in posts">
+			<div ng-if="!item.editing" ng-click="item.editing = true">
+				<h2>{{ item.title }}</h2>
+				<blockquote>
+					<p class="lead">{{ item.content }}</p>
+				</blockquote>
+			</div>
+			<div ng-if="item.editing">
+				<h2><input class="form-control" ng-model="item.title"></h2>
+				<textarea class="form-control" ng-model="item.content"></textarea>
+				<a href="" class="btn btn-link" ng-click="item.editing = false">Salvar</a>
+				<a href="" class="btn btn-link" ng-click="removeItem($index)">Remover</a>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<a href="" class="btn btn-primary" ng-click="addItem()">Novo post</a>
+		</div>
+
+		<h3>
+			<pre>{{posts | json}}</pre>
+		</h3>
+	</script>
+
+
+
+	<script type="text/javascript">
+		angular.module('MEAN', ['ngRoute']);
+
+
+
+		angular.module('MEAN').config(['$routeProvider', function($routeProvider) {
+
+			$routeProvider.
+				when('/', {
+					templateUrl: 'main.html'
+				}).
+				when('/posts', {
+					templateUrl: 'posts.html',
+					controller: 'PostsCtrl'
+				}).
+				otherwise({
+					redirectTo: '/'
+				});
+
+		}]);
+
+
+
+		angular.module('MEAN').controller('PostsCtrl', ['$scope', '$http', function ($scope, $http) {
+
+			// $scope.posts = [
+			// 	{title: 'Primeiro Post', content: 'Primeiro conteúdo'},
+			// 	{title: 'Segundo Post', content: 'Segundo conteúdo'}
+			// ];
+			
+			$http.get('/posts').then(function(response) {
+				$scope.posts = response.data;
+			});
+
+			$scope.addItem = function() {
+				$scope.posts.push({
+					title: 'Novo Post',
+					editing: true
+				});
+			}
+
+			$scope.removeItem = function(index) {
+				$scope.posts.splice(index, 1);
+			}
+
+		}]);
+	</script>
+</body>
+</html>

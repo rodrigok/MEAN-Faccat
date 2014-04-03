@@ -1,0 +1,33 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'start' ]
+2 info using npm@1.1.45
+3 info using node@v0.8.4
+4 verbose config file /Users/rodrigokrummenauer/.npmrc
+5 verbose config file /usr/local/etc/npmrc
+6 verbose config file /usr/local/lib/node_modules/npm/npmrc
+7 verbose read json /Volumes/1TB/Development/Projects/MEAN-Faccat/demo_mongo/package.json
+8 warn package.json application-name@0.0.1 No README.md file found!
+9 verbose run-script [ 'prestart', 'start', 'poststart' ]
+10 info prestart application-name@0.0.1
+11 info start application-name@0.0.1
+12 verbose unsafe-perm in lifecycle true
+13 silly exec sh "-c" "node app.js"
+14 silly sh,-c,node app.js,/Volumes/1TB/Development/Projects/MEAN-Faccat/demo_mongo spawning
+15 info application-name@0.0.1 Failed to exec start script
+16 error application-name@0.0.1 start: `node app.js`
+16 error `sh "-c" "node app.js"` failed with 1
+17 error Failed at the application-name@0.0.1 start script.
+17 error This is most likely a problem with the application-name package,
+17 error not with npm itself.
+17 error Tell the author that this fails on your system:
+17 error     node app.js
+17 error You can get their info via:
+17 error     npm owner ls application-name
+17 error There is likely additional logging output above.
+18 error System Darwin 13.1.0
+19 error command "/usr/local/bin/node" "/usr/local/bin/npm" "start"
+20 error cwd /Volumes/1TB/Development/Projects/MEAN-Faccat/demo_mongo
+21 error node -v v0.8.4
+22 error npm -v 1.1.45
+23 error code ELIFECYCLE
+24 verbose exit [ 1, true ]
